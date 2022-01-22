@@ -1,10 +1,8 @@
-package com.example.studentmanegement.api;
+package com.example.studentmanagement.api;
 
-import com.example.studentmanegement.exceptions.StudentEmptyNameException;
-import com.example.studentmanegement.exceptions.UniversityClassInvalidException;
-import com.example.studentmanegement.model.Student;
-import com.example.studentmanegement.model.UniversityClass;
-import com.example.studentmanegement.service.UniversityClassService;
+import com.example.studentmanagement.exceptions.UniversityClassInvalidException;
+import com.example.studentmanagement.model.UniversityClass;
+import com.example.studentmanagement.service.UniversityClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

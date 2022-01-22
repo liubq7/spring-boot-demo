@@ -1,12 +1,13 @@
-package com.example.studentmanegement.service;
+package com.example.studentmanagement.service;
 
-import com.example.studentmanegement.dao.StudentDao;
-import com.example.studentmanegement.dao.UniversityClassDao;
-import com.example.studentmanegement.exceptions.StudentEmptyNameException;
-import com.example.studentmanegement.exceptions.StudentNonExistException;
-import com.example.studentmanegement.exceptions.UniversityClassInvalidException;
-import com.example.studentmanegement.model.Student;
-import com.example.studentmanegement.model.UniversityClass;
+import com.example.studentmanagement.dao.StudentDao;
+import com.example.studentmanagement.dao.UniversityClassDao;
+import com.example.studentmanagement.exceptions.StudentEmptyNameException;
+import com.example.studentmanagement.exceptions.StudentNonExistException;
+import com.example.studentmanagement.exceptions.UniversityClassInvalidException;
+import com.example.studentmanagement.mapper.StudentMapper;
+import com.example.studentmanagement.model.Student;
+import com.example.studentmanagement.model.UniversityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,11 +18,13 @@ import java.util.Optional;
 public class StudentService {
     private StudentDao studentDao;
     private UniversityClassDao universityClassDao;
+    private StudentMapper studentMapper;
 
     @Autowired
-    public StudentService(StudentDao studentDao, UniversityClassDao universityClassDao) {
+    public StudentService(StudentDao studentDao, UniversityClassDao universityClassDao, StudentMapper studentMapper) {
         this.studentDao = studentDao;
         this.universityClassDao = universityClassDao;
+        this.studentMapper = studentMapper;
     }
 
     public Student addStudent(Student student) {
@@ -62,5 +65,13 @@ public class StudentService {
 
     public List<Student> getStudentsByName(String name) {
         return studentDao.findByName(name);
+    }
+
+    public List<Student> getStudentsWithName(String str) {
+        return studentMapper.getStudentsWithName("%" + str + "%");
+    }
+
+    public List<Student> getStudentsInClass(Integer year, Integer number) {
+        return studentMapper.getStudentsInClass(year, number);
     }
 }

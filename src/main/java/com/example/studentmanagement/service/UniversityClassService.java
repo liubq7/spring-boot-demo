@@ -1,8 +1,8 @@
-package com.example.studentmanegement.service;
+package com.example.studentmanagement.service;
 
-import com.example.studentmanegement.dao.UniversityClassDao;
-import com.example.studentmanegement.exceptions.UniversityClassInvalidException;
-import com.example.studentmanegement.model.UniversityClass;
+import com.example.studentmanagement.dao.UniversityClassDao;
+import com.example.studentmanagement.exceptions.UniversityClassInvalidException;
+import com.example.studentmanagement.model.UniversityClass;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

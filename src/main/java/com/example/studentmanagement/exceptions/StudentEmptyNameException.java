@@ -1,4 +1,4 @@
-package com.example.studentmanegement.exceptions;
+package com.example.studentmanagement.exceptions;
 
 public class StudentEmptyNameException extends RuntimeException {
     public StudentEmptyNameException(String message) {

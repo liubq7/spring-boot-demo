@@ -1,10 +1,10 @@
-package com.example.studentmanegement.api;
+package com.example.studentmanagement.api;
 
-import com.example.studentmanegement.exceptions.StudentEmptyNameException;
-import com.example.studentmanegement.exceptions.StudentNonExistException;
-import com.example.studentmanegement.exceptions.UniversityClassInvalidException;
-import com.example.studentmanegement.model.Student;
-import com.example.studentmanegement.service.StudentService;
+import com.example.studentmanagement.exceptions.StudentEmptyNameException;
+import com.example.studentmanagement.exceptions.StudentNonExistException;
+import com.example.studentmanagement.exceptions.UniversityClassInvalidException;
+import com.example.studentmanagement.model.Student;
+import com.example.studentmanagement.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,10 +28,32 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+    @PutMapping
+    public ResponseEntity<String> updateStudent(@RequestBody Student student) {
+        try {
+            studentService.updateStudent(student);
+            return ResponseEntity.ok("Updated student successfully");
+        } catch (StudentNonExistException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
     @GetMapping("/name")
     // localhost:8080/api/student/name?name=tom
     public List<Student> getStudentsByName(@RequestParam String name) {
         return studentService.getStudentsByName(name);
+    }
+
+    @GetMapping("/with_name")
+    // localhost:8080/api/student/with_name?str=t
+    public List<Student> getStudentsWithName(@RequestParam String str) {
+        return studentService.getStudentsWithName(str);
+    }
+
+    @GetMapping("/class")
+    // localhost:8080/api/student/class?year=2022&number=1
+    public List<Student> getStudentsInClass(@RequestParam Integer year, @RequestParam Integer number) {
+        return studentService.getStudentsInClass(year, number);
     }
 
     @PostMapping("/register")

@@ -1,6 +1,6 @@
-package com.example.studentmanegement.dao;
+package com.example.studentmanagement.dao;
 
-import com.example.studentmanegement.model.Student;
+import com.example.studentmanagement.model.Student;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

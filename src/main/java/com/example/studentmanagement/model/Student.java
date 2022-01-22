@@ -3,7 +3,7 @@ package com.example.studentmanagement.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="student")
+@Table(name = "student")
 public class Student {
 
     @Id
@@ -14,7 +14,7 @@ public class Student {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name="university_class_id")
+    @JoinColumn(name = "university_class_id")
     private UniversityClass universityClass;
 
     public Student(Long id, String name) {
@@ -22,7 +22,8 @@ public class Student {
         this.name = name;
     }
 
-    public Student() {}
+    public Student() {
+    }
 
     @Override
     public String toString() {

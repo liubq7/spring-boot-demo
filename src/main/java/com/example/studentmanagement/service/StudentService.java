@@ -16,9 +16,9 @@ import java.util.Optional;
 
 @Service
 public class StudentService {
-    private StudentDao studentDao;
-    private UniversityClassDao universityClassDao;
-    private StudentMapper studentMapper;
+    private final StudentDao studentDao;
+    private final UniversityClassDao universityClassDao;
+    private final StudentMapper studentMapper;
 
     @Autowired
     public StudentService(StudentDao studentDao, UniversityClassDao universityClassDao, StudentMapper studentMapper) {
@@ -73,5 +73,12 @@ public class StudentService {
 
     public List<Student> getStudentsInClass(Integer year, Integer number) {
         return studentMapper.getStudentsInClass(year, number);
+    }
+
+    public void deleteStudentById(Long studentId) {
+        if (!studentDao.existsById(studentId)) {
+            throw new StudentNonExistException("Student id doesn't exist");
+        }
+        studentDao.deleteById(studentId);
     }
 }

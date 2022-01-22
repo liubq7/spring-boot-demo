@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class UniversityClassService {
-    private UniversityClassDao universityClassDao;
+    private final UniversityClassDao universityClassDao;
 
     @Autowired
     public UniversityClassService(UniversityClassDao universityClassDao) {

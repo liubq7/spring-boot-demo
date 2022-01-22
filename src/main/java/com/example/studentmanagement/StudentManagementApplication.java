@@ -20,35 +20,35 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @SpringBootApplication
 public class StudentManagementApplication {
 
-	private static Logger log = LoggerFactory.getLogger(StudentManagementApplication.class);
+    private static Logger log = LoggerFactory.getLogger(StudentManagementApplication.class);
 
-	@ExceptionHandler(AuthorizationException.class)
-	@ResponseStatus(HttpStatus.FORBIDDEN)
-	public void handleException(AuthorizationException e) {
-		log.debug("{} was thrown", e.getClass(), e);
-	}
+    @ExceptionHandler(AuthorizationException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public void handleException(AuthorizationException e) {
+        log.debug("{} was thrown", e.getClass(), e);
+    }
 
-	@Bean
-	public Realm realm() {
-		return new PropertiesRealm();
-	}
+    @Bean
+    public Realm realm() {
+        return new PropertiesRealm();
+    }
 
-	@Bean
-	public ShiroFilterChainDefinition shiroFilterChainDefinition() {
-		DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
-		chainDefinition.addPathDefinition("/**", "authcBasic");
-		return chainDefinition;
-	}
+    @Bean
+    public ShiroFilterChainDefinition shiroFilterChainDefinition() {
+        DefaultShiroFilterChainDefinition chainDefinition = new DefaultShiroFilterChainDefinition();
+        chainDefinition.addPathDefinition("/**", "authcBasic");
+        return chainDefinition;
+    }
 
-	@Bean
-	public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
-		DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
-		defaultAdvisorAutoProxyCreator.setUsePrefix(true);
-		return defaultAdvisorAutoProxyCreator;
-	}
+    @Bean
+    public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        defaultAdvisorAutoProxyCreator.setUsePrefix(true);
+        return defaultAdvisorAutoProxyCreator;
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(StudentManagementApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StudentManagementApplication.class, args);
+    }
 
 }

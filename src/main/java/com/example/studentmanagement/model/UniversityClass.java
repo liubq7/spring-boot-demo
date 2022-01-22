@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="university_class")
+@Table(name = "university_class")
 public class UniversityClass {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -25,7 +25,8 @@ public class UniversityClass {
         this.number = number;
     }
 
-    public UniversityClass() {}
+    public UniversityClass() {
+    }
 
     public Long getId() {
         return id;

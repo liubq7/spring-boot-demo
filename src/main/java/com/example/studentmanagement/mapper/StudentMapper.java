@@ -14,6 +14,6 @@ public interface StudentMapper {
     List<Student> getStudentsWithName(@Param("str") String str);
 
     @Select("SELECT * FROM student WHERE university_class_id IN" +
-        "(SELECT id FROM university_class WHERE year = #{year} AND number = #{number})")
+            "(SELECT id FROM university_class WHERE year = #{year} AND number = #{number})")
     List<Student> getStudentsInClass(@Param("year") Integer year, @Param("number") Integer number);
 }

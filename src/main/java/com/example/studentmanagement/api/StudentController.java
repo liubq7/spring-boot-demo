@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("api/student")
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -80,6 +80,17 @@ public class StudentController {
             Student student = studentService.assignClass(studentId, classId);
             return ResponseEntity.ok("Assigned class: " + student.toString());
         } catch (StudentNonExistException | UniversityClassInvalidException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("{id}")
+    @RequiresPermissions("student:write")
+    public ResponseEntity<String> deleteStudentById(@PathVariable("id") Long studentId) {
+        try {
+            studentService.deleteStudentById(studentId);
+            return ResponseEntity.ok("Delete student successfully");
+        } catch (StudentNonExistException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
